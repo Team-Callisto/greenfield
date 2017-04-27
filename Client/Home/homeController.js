@@ -8,18 +8,18 @@ var app = angular.module('myApp',[])
       method:"POST",
       url: "/db",
       data : {
-        'user': $scope.userInput.user,
-        'time': $scope.userInput.time,
-        'level': $scope.userInput.level,
-        'mood': $scope.userInput.mood,
-        'note' : $scope.userInput.note
+        'user': $scope.options.user,
+        'time': $scope.options.time,
+        'level': $scope.options.level,
+        'mood': $scope.options.mood,
+        'note' : $scope.options.note
       }
-
-  }
-
+    }
 });
 
 .controller("submitController",function($scope,$http,postToServerFactory){
-   $scope.userInput = {};
+   $scope.options = {};
+   $scope.options.level = [-3,-2,-1,0,1,2,3];
+   $scope.options.availableMoods = [‘Content’, ‘So-so’, ‘Stressed’, ‘Upset’, ‘Motivated’];
    $scope.submitInput = postToServerFactory.postToServer();
  })
