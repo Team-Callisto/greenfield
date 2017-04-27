@@ -1,8 +1,6 @@
-//Question 2: what is the Object looks like when it pass from client?
-
 var express = require('express');
 var app = express();
-var http = require('http');
+//var http = require('http');
 //var request = require("request");
 var bodyParser = require("body-parser");//Maybe I do not need this line.
 
@@ -14,7 +12,7 @@ var logDataController = require('./logDataController.js')//check this path!!!!!
 app.use(bodyParser.json());//Maybe I do not need this line
 app.use(express.static(__dirname + '/client'));//check this path!!!!!!
 
-//app.post('/', logDataController.newLog);
+app.post('/db', logDataController.newLog);
 app.get('/', logDataController.allLogs);
 
 //if type other address, console log error messages
