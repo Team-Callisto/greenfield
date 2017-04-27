@@ -1,0 +1,47 @@
+<div id='container'>
+  <nav class="navigation">
+    <ul>
+      <li>
+          <a class="selected" href="#/home">Home</a>
+      </li>
+       <li>
+          <a href="#/shorten">Shorten</a>
+      </li>
+    </ul>
+  </nav>
+</div>   
+<div class="sumbitForm">
+    <form ng-controller="submitController">
+
+    	  <input type="text" ng-model='options.user' placeholder="Username"></input>
+
+          <br></br>
+-->Mood level menu<--
+        <label for='levelSelect'> Level: </label>
+        <select name='levelSelect' ng-model='options.level'>
+          <option ng-repeat='level in options.availableLevels' value='{{level}}'>{{level}}</option>
+        </select>
+
+          <br></br>
+-->Mood menu<--
+        <label for='moodSelect'> Mood: </label>
+        <select name='moodSelect' ng-model='options.mood'>
+          <option ng-repeat='mood in options.availableMoods' value='{{mood}}'>{{mood}}</option>
+        </select>
+
+          <br></br>
+-->Time form<--
+      <form name="myForm" ng-controller="DateController as dateCtrl">
+        <label for="exampleInput">Pick a date and time:</label>
+        <input type="datetime-local" id="exampleInput" name="input" ng-model="example.value" placeholder="yyyy-MM-ddTHH:mm:" min="2001-01-01T00:00:00" max="2019-12-31T00:00:00" required />
+          <div role="alert">
+            <span class="error" ng-show="myForm.input.$error.required">
+              Required!
+            </span>
+            <span class="error" ng-show="myForm.input.$error.datetimelocal">Not a valid date!</span>
+          </div>
+      </form>
+
+    <input type="submit"></input>
+    </form type="submit">
+</div>

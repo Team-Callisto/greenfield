@@ -1,0 +1,31 @@
+<!-- <label for="level"> Mood </label><br>
+            <select name="singleSelect" ng-model="moodCtrl">
+              <option value="0">Ecstatic</option>
+              <option value="1">Joyful</option>
+              <option value="2">Happy</option>
+              <option value="3">Sad</option>
+              <option value="4">Angry</option>
+              <option value="5">Depressed</option>
+              <option value="6">Harambe</option>
+            </select>
+
+             <!-- <label for="level"> Mood Level: </label><br>
+            <select name="singleSelect" ng-model="dateTimeCtrl">
+              <option value="0">3</option>
+              <option value="1">2</option>
+              <option value="2">1</option>
+              <option value="3">0</option>
+              <option value="4">-1</option>
+              <option value="5">-2</option>
+              <option value="6">-3</option>
+
+            <form name="myForm" ng-controller="DateController as dateCtrl">
+              <label for="exampleInput">Pick a date and time:</label>
+              <input type="datetime-local" id="exampleInput" name="input" ng-model="example.value" placeholder="yyyy-MM-ddTHH:mm:ss" min="2001-01-01T00:00:00" max="2019-12-31T00:00:00" required />
+                <div role="alert">
+                  <span class="error" ng-show="myForm.input.$error.required">
+                    Required!
+                  </span>
+                  <span class="error" ng-show="myForm.input.$error.datetimelocal">Not a valid date!</span>
+                </div>
+            </form>  -->
