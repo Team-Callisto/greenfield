@@ -18,10 +18,10 @@ module.exports = {
             console.log(message.sid);
         });
 
-
-    request(options,function(err,res,body){
-      if(err) return console.log(err);
-      res.send(body);
-    });
-  }
+  // 
+  //   request(options,function(err,res,body){
+  //     if(err) return console.log(err);
+  //     res.send(body);
+  //   });
+  // }
 }

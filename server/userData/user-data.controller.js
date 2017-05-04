@@ -9,7 +9,7 @@ module.exports = {
     var password = req.body.password;
 
     findUser({user: user, password: password})
-    .than(function (user) {
+    .than(function (user) {//Eric: is it supposed to be thAn or thEn?
       if(!user) {
         next(new Error("User does not exist"));
       } else {
