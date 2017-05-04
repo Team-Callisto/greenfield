@@ -27,8 +27,6 @@ angular.module('app.home',['ngMaterial'])
       $mdMenu.open(ev);
     };
 
-  console.log('tessssssst')
-
   $scope.options = {
      level : null,
      availableLevels: [3, 2, 1, 0, -1, -2, -3],
