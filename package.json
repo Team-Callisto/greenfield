@@ -1,0 +1,30 @@
+{
+  "name": "greenfield-motivation",
+  "version": "0.0.1",
+  "description": "people's motivation",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidXu2017/greenfield.git"
+  },
+  "author": "Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidXu2017/greenfield/issues"
+  },
+  "homepage": "https://github.com/DavidXu2017/greenfield#readme",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "jwt-simple": "^0.5.1",
+    "mongoose": "^4.9.6",
+    "morgan": "^1.8.1",
+    "q": "^1.5.0",
+    "request": "^2.81.0",
+    "twilio": "^3.0.0"
+  }
+}

@@ -1,0 +1,19 @@
+<div id='login' layout="column" layout-align="center center" layout-padding="" ng-cloak="" ng-controller="loginController">
+  <h1>Login</h1>
+  <br>
+    <md-input-container md-no-float="" class="md-block">
+      <md-icon></md-icon>
+      <input ng-model="user.username" type="text" placeholder="Username">
+    </md-input-container>
+
+    <md-input-container md-no-float="" class="md-block">
+      <md-icon></md-icon>
+      <input ng-model="user.password" type="password" placeholder="Password">
+      <p ng-show='error'>{{errorMessage}}</p>
+    </md-input-container>
+    <div>
+      <md-button type="submit" ng-disabled="disabled" ng-click="login()">Submit</md-button>
+    </div>
+  </md-content>
+</div>
+

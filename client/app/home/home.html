@@ -1,0 +1,61 @@
+<div id='login' layout="column" layout-align="center center" layout-padding="" ng-cloak="">
+  <form ng-controller="homeController" ng-submit="submitInput()">
+    <md-input-container md-no-float="" class="md-block">
+      <md-icon></md-icon>
+      <input ng-model="user.username" type="text" placeholder="Username">
+    </md-input-container> {{username}}
+    <br>
+    <div class="md-menu-demo" ng-controller="homeController as ctrl" ng-cloak>
+
+  <div class="menu-demo-container" layout-align="center center" layout="column">
+    <h2 class="md-title">Level</h2>
+    <md-menu>
+      <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdMenu, $event)">
+        <svg class="icon icon-user-plus"><use xlink:href="#icon-user-plus"></use></svg>
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button>
+            <md-icon md-menu-align-target></md-icon>
+            Redial
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
+            <md-icon></md-icon>
+            Check voicemail
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+          <md-button ng-click="ctrl.toggleNotifications()">
+            <md-icon></md-icon>
+            {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </div>
+</div>
+
+        <label for='levelSelect'> Level: </label>
+        <select name='levelSelect' ng-model='options.level'>
+          <option ng-repeat='level in options.availableLevels' value='{{level}}'>{{level}}</option>
+        </select>
+          <br>
+        <label for='moodSelect'> Mood: </label>
+        <select name='moodSelect' ng-model='options.mood'>
+          <option ng-repeat='mood in options.availableMoods' value='{{mood}}'>{{mood}}</option>
+        </select>
+        <br>
+    <label for="exampleInput">Pick a date and time:</label>
+    <input type="datetime-local" id="exampleInput" name="input" ng-model="time" placeholder="yyyy-MM" min="2001-01-01T00:00:00" max="2019-12-31T00:00:00" />
+      <div role="alert">
+        <span class="error" ng-show="myForm.input.$error.required">
+          Required!
+        </span>
+        <span class="error" ng-show="myForm.input.$error.datetimelocal">Not a valid date!</span>
+      </div>
+    <input type="submit"></input>
+  </form type="submit">
+</div>

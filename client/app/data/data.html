@@ -1,0 +1,28 @@
+<div id='data' layout="column" layout-align="center center" layout-padding="" ng-cloak="" class="inputdemoIcons">
+  <h2>Your Data Graphs</h2>
+
+  <!-- TEMP: navigation between graphs -->
+  <div id='container' ng-cloak>
+    <md-content class="md-padding">
+      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-href="#/today" name="today">Today</md-nav-item>
+        <md-nav-item md-nav-href="#/week" name="week">Week</md-nav-item>
+        <md-nav-item md-nav-href="#/home" name="month">Month</md-nav-item>
+      </md-nav-bar>
+    </md-content>
+  </div>
+
+  <h2>Today's Data</h2>
+  <!-- angular-charts chart -->
+  <canvas id="line" width={{width}}
+    class="chart chart-line" chart-data="data"
+    chart-labels="labels" chart-series="series" chart-options="options"
+    chart-dataset-override="datasetOverride" chart-click="onClick">
+  </canvas>
+
+  <!-- TEMP: display db data -->
+  <div>
+    <button ng-click="displayTable()">Display data from db</button></br>
+    {{ tableGraph }}
+  </div>
+</div>
