@@ -1,30 +1,28 @@
-<div id='signup' layout="column" layout-padding="" ng-cloak="" class="inputdemoIcons">
+<div id='signup' layout="column" layout-padding="" layout-align="center center" ng-cloak="" class="inputdemoIcons">
   <h1>Sign Up</h1>
   <br>
   <md-content class="md-no-momentum">
     <md-input-container class="md-icon-float md-block">
       <label>Name</label>
-      <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+      <md-icon class="name"></md-icon>
       <input ng-model="user.name" type="text">
     </md-input-container>
 
     <md-input-container class="md-block">
-      <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+      <md-icon class="email"></md-icon>
       <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
     </md-input-container>
 
 
     <md-input-container md-no-float="" class="md-block">
-      <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
+      <md-icon></md-icon>
       <input ng-model="user.username" type="text" placeholder="Username">
     </md-input-container>
 
     <md-input-container md-no-float="" class="md-block">
-      <md-icon md-svg-src="img/icons/ic_place_24px.svg" style="display:inline-block;"></md-icon>
+      <md-icon style="display:inline-block;"></md-icon>
       <input ng-model="user.password" type="password" placeholder="Password">
     </md-input-container>
-    <div>
-      <md-button type="submit">Submit</md-button>
-    </div>
   </md-content>
+  <md-button type="submit" layout-align="center center">Submit</md-button>
 </div>

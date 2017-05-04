@@ -19,6 +19,7 @@ module.exports = {
         });
 
 
+
     request(options,function(err,res,body){
       if(err) return console.log(err);
       res.send(body);
@@ -37,4 +38,12 @@ module.exports = {
     res.end(twiml.toString());
     });
   }
+
+  //
+  //   request(options,function(err,res,body){
+  //     if(err) return console.log(err);
+  //     res.send(body);
+  //   });
+  // }
+
 }
