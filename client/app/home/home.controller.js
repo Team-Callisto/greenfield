@@ -16,7 +16,7 @@ angular.module('app.home',['ngMaterial'])
 //   }
 // })
 
-.controller('homeController', ['$scope', '$http', '$mdDialog', 'AuthService',function($scope, $http, $mdDialog, AuthService) {
+.controller('homeController', ['$scope', '$http', '$mdDialog', 'AuthService', '$mdToast', function($scope, $http, $mdDialog, AuthService, $mdToast) {
   //Menu controls
   var originatorEv;
     this.openMenu = function($mdMenu, ev) {
@@ -77,4 +77,30 @@ angular.module('app.home',['ngMaterial'])
   originatorEv = null;
   // $scope.submitInput = postToServerFactory.postToServer();
 
+  // Toasts
+var last = {
+    bottom: false,
+    top: true,
+    left: false,
+    right: true
+  };
+
+  $scope.toastPosition = angular.extend({},last);
+
+  $scope.getToastPosition = function() {
+    return Object.keys($scope.toastPosition)
+      .filter(function(pos) { return $scope.toastPosition[pos]; })
+      .join(' ');
+  };
+
+  $scope.showSimpleToast = function() {
+    var pinTo = $scope.getToastPosition();
+
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Thanks for logging!')
+        .position(pinTo )
+        .hideDelay(3000)
+    );
+  };
  }])

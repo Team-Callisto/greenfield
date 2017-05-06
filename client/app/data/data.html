@@ -50,53 +50,52 @@
   </div>
   <br>
 
+
   <button ng-click="displayDailyGraphs()">Display Daily Graphs</button><br>
+
+  <br>
+
+  <button ng-click="displayDailyGraphs()">
+  Display Daily Graphs
+  </button><br>
+
   <div ng-repeat="day in dailyGraphs">
-    <div>{{day._id.month}}/{{day._id.day}}/{{day._id.year}} - Average Level: {{day.averageLevel}} </div>
-    <!-- <div ng-repeat="v in day.times | orderBy: 'time'"> -->
-    <!-- <canvas id="line" width="{{width}}"
-      class="chart chart-line" chart-data="day"
-      chart-labels="labels" chart-series="series" chart-options="options"
+    <div class="texting">{{day.day | amDateFormat:'dddd, MMM Do, YYYY'}}</div>
+    <canvas id="line" width="{{width}}"
+      class="chart chart-line" chart-data="[day.justLevels]"
+      chart-labels="day.justHours" chart-series="series" chart-options="options"
       chart-dataset-override="datasetOverride" chart-click="onClick">
-    </canvas> -->
-    <div ng-repeat="v in day.times">
-      {{ v.time | date: 'medium' }} - Level: {{ v.level }}
-    </div><br>
+    </canvas>
   </div>
   <br>
 
-  <!-- <button ng-click="displayWeeklyAverages()">
-    Display Monthly Averages
+  <button ng-click="displayWeeklyGraphs()">
+    Display Weekly Graphs
   </button><br>
-  {{ monthlyAverages }} -->
-  <!-- Template for grouping by (IGNORE FOR NOW)-->
-  <div ng-repeat="(key, value) in tableWeekly">
-    <div>Week: {{ key }}</div>
-    <div ng-repeat="v in value | orderBy: 'time'" >
-      {{ v.time | date:'medium'}}
-      <canvas id="line" width="{{width}}"
-        class="chart chart-line" chart-data="data"
-        chart-labels="labels" chart-series="series" chart-options="options"
-        chart-dataset-override="datasetOverride" chart-click="onClick">
-      </canvas>
+  <div ng-repeat="(key, value) in weeklyGraphs">
+    {{value.justDays[0]}} - {{value.justDays[value.justDays.length - 1]}}
+    <canvas id="line" width="{{width}}"
+      class="chart chart-line" chart-data="[value.justLevels]"
+      chart-labels="value.justDays" chart-series="series" chart-options="options"
+      chart-dataset-override="datasetOverride" chart-click="onClick">
+    </canvas>
     </div>
   </div>
-  <!-- {{ tableDaily }} -->
-  <div>
-    <ul>
-      <li ng-repeat="dates in tableDaily | orderBy: '-time'">
-        {{dates.time | date:'medium'}}
-      </li>
-    </ul>
-  </div>
+  <br>
 
-  <div>
-    <ul>
-      <li ng-repeat="dates in tableDaily | orderBy: '-time'">
-        {{dates.time | date:'medium'}}
-      </li>
-    </ul>
+  <button ng-click="displayMonthlyGraphs()">
+    Display Monthly Graphs
+  </button><br>
+  <div ng-repeat="(key, value) in monthlyGraphs">
+    {{ value.month | amDateFormat:'MMMM YYYY'}}
+    <canvas id="line" width="{{width}}"
+      class="chart chart-line" chart-data="[value.justLevels]"
+      chart-labels="['Week 1', 'Week 2', 'Week 3', 'Week 4']" chart-series="series" chart-options="options"
+      chart-dataset-override="datasetOverride" chart-click="onClick">
+    </canvas>
+    </div>
   </div>
+  <br>
 
 
   <!-- TEMP: display db data -->

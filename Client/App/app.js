@@ -1,4 +1,4 @@
-angular.module('app',['ngRoute', 'ngMaterial', 'chart.js','app.home', 'app.data', 'app.login', 'app.signup','app.text','app.button'])
+angular.module('app',['ngRoute', 'ngMaterial', 'chart.js','app.home', 'app.data', 'app.login', 'app.signup','app.text','app.button', 'angularMoment'])
 
 .config(function($routeProvider) {
   $routeProvider
@@ -36,12 +36,12 @@ angular.module('app',['ngRoute', 'ngMaterial', 'chart.js','app.home', 'app.data'
     redirectTo: '/'
   })
 })
-.run(function ($rootScope, $location, $route, AuthService) {
-  $rootScope.$on('$routeChangeStart',
-    function (event, next, current) {
-    if (next.$$route.requireAuth && AuthService.isLoggedIn() === false) {
-      $location.path('/login');
-      $route.reload();
-    }
-  });
-});
+// .run(function ($rootScope, $location, $route, AuthService) {
+//   $rootScope.$on('$routeChangeStart',
+//     function (event, next, current) {
+//     if (next.$$route.requireAuth && AuthService.isLoggedIn() === false) {
+//       $location.path('/login');
+//       $route.reload();
+//     }
+//   });
+// });
