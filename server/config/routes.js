@@ -14,12 +14,15 @@ module.exports = function (app, express) {
   app.post('/signup', userDataController.newUser);
   app.post('/login', userDataController.login);
   app.get('/signout', userDataController.signout);
-  app.get('/data/:year/:month/:day', logDataController.daily);
-  app.get('/data/:year/:month', logDataController.monthly);
+  app.post('/data/:year/:month/:day', logDataController.daily);
+  app.post('/data/:year/:month', logDataController.monthly);
   app.post('/text', textController.sendText);
+
+
   app.post('/recieve',textController.recieveText);
-  app.get('/data/average/level/daily/:year', logDataController.dailyAverages);
-  app.get('/data/average/level/weekly/:year', logDataController.weeklyAverages);
+  app.post('/message',textController.recieveText);
+  app.post('/data/average/level/daily/:year', logDataController.dailyAverages);
+  app.post('/data/average/level/weekly/:year', logDataController.weeklyAverages);
 
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);

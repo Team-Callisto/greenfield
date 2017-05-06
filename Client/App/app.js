@@ -1,4 +1,4 @@
-angular.module('app',['ngRoute', 'ngMaterial', 'chart.js','app.home', 'app.data', 'app.login', 'app.signup','app.text'])
+angular.module('app',['ngRoute', 'ngMaterial', 'chart.js','app.home', 'app.data', 'app.login', 'app.signup','app.text','app.button'])
 
 .config(function($routeProvider) {
   $routeProvider

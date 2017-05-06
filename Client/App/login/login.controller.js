@@ -19,6 +19,7 @@ angular.module('app.login', [])
       //hide login button and signup button when login successfully
       $rootScope.loginButtonFunc();
       $rootScope.signupButtonFunc();
+      $rootScope.logoutButtonFunc();
   	})
   	//handle error
   	.catch(function() {

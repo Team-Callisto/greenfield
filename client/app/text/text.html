@@ -4,5 +4,5 @@
     <input type="text" ng-model="phoneNumber" placeholder="phoneNumber"/>
     <input type="submit" ng-click="sendText()"/>
   </form>
-  <span ng-model='displayMessage'></span>
+  <div ng-model="displayMessage" ng-repeat='message in displayMessage' >{{message}}</div>
 </div>

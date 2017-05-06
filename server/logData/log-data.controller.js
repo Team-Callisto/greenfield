@@ -9,7 +9,6 @@ var aggregateLogs = Q.nbind(Log.aggregate, Log);
 module.exports = {
   //fatch data from database
   singleLogs: function (req, res, next) {
-    console.log("Hello");
     findAllLogs({username: req.body.username})
     .then(function (logs) {
       res.json(logs);
@@ -20,7 +19,6 @@ module.exports = {
   },
   //save data to the table
   newLog: function (req, res, next) {
-    console.log(req.body)
     return createLog({
       username: req.body.username,
       level: req.body.level,
@@ -46,7 +44,7 @@ module.exports = {
     //     res.send(logs);
     //   }
     // });
-
+    console.log("Hello: ", req.body.username);
     aggregateLogs([
       {
         $addFields: {
@@ -60,6 +58,7 @@ module.exports = {
       },
       {
         $match: {
+          username: req.body.username,
           year: parseInt(req.params.year, 10),
           month: parseInt(req.params.month, 10),
           day: parseInt(req.params.day, 10)
@@ -67,7 +66,7 @@ module.exports = {
       }
     ])
     .then(function(logs) {
-      console.log(logs);
+      console.log('daily logs: ', logs);
       res.send(logs);
     })
     .fail(function(error) {
@@ -103,6 +102,7 @@ module.exports = {
       },
       {
         $match: {
+          username: req.body.username,
           year: parseInt(req.params.year, 10),
           month: parseInt(req.params.month, 10),
         }
@@ -136,6 +136,7 @@ module.exports = {
       },
       {
         $match: {
+          username: req.body.username,
           year: parseInt(req.params.year, 10)
         }
       },
@@ -177,6 +178,7 @@ module.exports = {
       },
       {
         $match: {
+          username: req.body.username,
           year: parseInt(req.params.year, 10)
         }
       },
