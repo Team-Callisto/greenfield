@@ -1,28 +1,32 @@
-<div id='data' layout="column" layout-align="center center" layout-padding="" ng-cloak="" class="inputdemoIcons">
-  <h2>Your Data Graphs</h2>
-<h3>Data</h
-<div>
-  <button ng-click="displayTable()">
-    Display Table
-  </button><br>
-  {{ tableGraph }}
-  <br>
-  <input type="number" ng-model='yearToSearch' placeholder="Year to Search"></input> year: {{ yearToSearch}}<br>
-  <input type="number" ng-model='monthToSearch' placeholder="Month to Search"></input> month: {{ monthToSearch}}<br>
-  <input type="number" ng-model='dayToSearch' placeholder="Day to Search"></input> day: {{ dayToSearch}}<br>
-  <button ng-click="displayDaily()">
-    Display Daily
-  </button><br>
-  {{ tableDaily }}<br>
-  <button ng-click="displayMonthly()">
-    Display Monthly
-  </button><br>
-  {{ tableMonthly }}<br>
 
-  <br>
-  <button ng-click="displayDailyAverages()">
-    Display Daily Averages
-  </button><br>
+
+<div id='data' layout="column" layout-align="center center" layout-padding="" ng-cloak="" class="inputdemoIcons">
+
+  <h2>Your data</h2>
+
+  <!-- Navigation between graphs -->
+  <div id='container' ng-cloak>
+    <md-content class="md-padding">
+      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-click="displayDaily()">Today</md-nav-item>
+        <md-nav-item md-nav-click="displayWeekly()">Week</md-nav-item>
+        <md-nav-item md-nav-click="displayMonthly()">Month</md-nav-item>
+      </md-nav-bar>
+    </md-content>
+  </div>
+
+  <!-- angular-charts chart -->
+  <h3>{{selectedData}}</h3>
+  <canvas id="line" width="{{width}}"
+    class="chart chart-line" chart-data="data"
+    chart-labels="labels" chart-series="series" chart-options="options"
+    chart-dataset-override="datasetOverride" chart-click="onClick">
+  </canvas>
+
+
+
+  <!-- TEMPORARY -->
+  <button ng-click="displayDailyAverages()">Display Daily Averages</button><br>
   <div ng-repeat="day in dailyAverages">
     <div>{{day._id.month}}/{{day._id.day}}/{{day._id.year}} - Average Level: {{day.averageLevel}} </div>
     <!-- <div ng-repeat="v in day.times | orderBy: 'time'"> -->
@@ -37,9 +41,7 @@
   </div>
   <br>
 
-  <button ng-click="displayWeeklyAverages()">
-    Display Weekly Averages
-  </button><br>
+  <button ng-click="displayWeeklyAverages()">Display Weekly Averages</button><br>
   <div ng-repeat="day in weeklyAverages">
     <div>{{day.times[0].time | date:'MMMM, d'}} - {{ day.times[day.times.length - 1].time | date:'MMMM, d'}} Average Level: {{day.averageLevel}} </div>
     <div ng-repeat="v in day.times">
@@ -48,11 +50,15 @@
   </div>
   <br>
 
+
+  <button ng-click="displayDailyGraphs()">Display Daily Graphs</button><br>
+
   <br>
 
   <button ng-click="displayDailyGraphs()">
   Display Daily Graphs
   </button><br>
+
   <div ng-repeat="day in dailyGraphs">
     <div class="texting">{{day.day | amDateFormat:'dddd, MMM Do, YYYY'}}</div>
     <canvas id="line" width="{{width}}"
@@ -91,28 +97,13 @@
   </div>
   <br>
 
-  <!-- TEMP: navigation between graphs -->
-  <div id='container' ng-cloak>
-    <md-content class="md-padding">
-      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-href="#/today" name="today">Today</md-nav-item>
-        <md-nav-item md-nav-href="#/week" name="week">Week</md-nav-item>
-        <md-nav-item md-nav-href="#/home" name="month">Month</md-nav-item>
-      </md-nav-bar>
-    </md-content>
-  </div>
-
-  <h2>Today's Data</h2>
-  <!-- angular-charts chart -->
-  <canvas id="line" width={{width}}
-    class="chart chart-line" chart-data="data"
-    chart-labels="labels" chart-series="series" chart-options="options"
-    chart-dataset-override="datasetOverride" chart-click="onClick">
-  </canvas>
 
   <!-- TEMP: display db data -->
   <div>
     <button ng-click="displayTable()">Display data from db</button></br>
     {{ tableGraph }}
   </div>
+
+
+
 </div>
