@@ -121,11 +121,13 @@ md-content.md-padding {
   animation: orb5 40s cubic-bezier(0.27, 0.96, 0.58, 1) alternate infinite;
   opacity: 0.86535538;
 }
-body {
+/*body {
   background: #f6f6f6;
   margin: 0;
   padding: 0;
-}
+}*/
+
+
 h1 {
   line-height: 100vh;
   text-align: center;
@@ -199,6 +201,7 @@ div.text {
   text-align: center;
   margin: 0 auto;
   transform: translateY(75%);
+  background-color: transparent;
 }
 
 .hov-button {
@@ -230,10 +233,10 @@ div.text {
 }
 .hov-button:after {
   content: ' ';
-  background: -webkit-linear-gradient(left top, #3378e8, #32c3e8);
-  background: -o-linear-gradient(bottom right, #3378e8, #32c3e8);
-  background: -moz-linear-gradient(bottom right, #3378e8, #32c3e8);
-  background: linear-gradient(bottom right, #3378e8, #32c3e8);
+  background: -webkit-linear-gradient(left top, #61BFAD, #32c3e8);
+  background: -o-linear-gradient(bottom right, #61BFAD, #32c3e8);
+  background: -moz-linear-gradient(bottom right, #61BFAD, #32c3e8);
+  background: linear-gradient(bottom right, #61BFAD, #32c3e8);
   position: absolute;
   left: 0;
   top: 0;
