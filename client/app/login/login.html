@@ -15,7 +15,11 @@
       <input ng-model="user.password" type="password">
       <p ng-show='error'>{{errorMessage}}</p>
     </md-input-container>
-    <div>
-      <md-button type="submit" ng-disabled="disabled" ng-click="login()">Submit</md-button>
-    </div>
+  
+
+    <div class="container" layout="column" layout-align="center center" layout-padding="" ng-cloak="">
+    <button class="hov-button" type="submit" layout-align="center center" ng-disabled="disabled" ng-click="login()"><span>Submit</span>
+      <div class="gradient"></div>
+    </button>
+</div>
 </div>
