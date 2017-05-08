@@ -1,0 +1,30 @@
+
+<div id='login' layout="column" layout-align="center center" layout-padding="" ng-cloak="" ng-controller='textController'>
+<!-- <label class="pageTitle">Send a text!</label>
+<br/>
+ <form>
+   <input type="text" ng-model="message" placeholder="textToSend" id='out'/>
+   <input type="text" ng-model="phoneNumber" placeholder="phoneNumber" id='num'/>
+   <input type="submit"  class='txtButton'/>
+ </form> -->
+ <label class="pageTitle">send a text!</label>
+ <br>
+  <md-input-container md-no-float="" class="md-block">
+    <md-icon></md-icon>
+    <label>text to send</label>
+    <input ng-model="message" type="text">
+  </md-input-container>
+  <md-input-container md-no-float="" class="md-block">
+    <md-icon></md-icon>
+    <label>phone number</label>
+    <input ng-model="phoneNumber" type="text">
+  </md-input-container>
+
+  <div class="container" layout="column" layout-align="center center" layout-padding="" ng-cloak="">
+  <button class="hov-button" type="submit" layout-align="center center" ng-disabled="disabled" ng-click="sendText()" ng-click="saveText()"><span>Submit</span>
+    <div class="gradient"></div>
+  </button>
+</div>
+  <div ng-model="displayMessage" ng-repeat='message in displayMessage' >{{message}}</div>
+ </div>
+</div>

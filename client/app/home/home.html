@@ -1,0 +1,41 @@
+
+<div id='home' layout="column" layout-align="center center" layout-padding="" ng-cloak="" ng-controller="homeController">
+
+<label class="pageTitle">what's your moody?</label>
+
+<div class="sumbitForm">
+  <form ng-controller="homeController" ng-submit="submitInput(); showSimpleToast()" layout="column" layout-align="center center" layout-padding="" ng-cloak="" >
+    <md-input-container class="md-block" flex-gt-sm>
+       <label for='moodSelect'>Mood Level</label>
+       <md-select name='moodSelect' ng-model='options.mood'>
+         <md-option ng-repeat="mood in options.availableMoods" value="{{mood}}">
+           <i class="material-icons"><font size="7">{{mood}}</font></i>
+         </md-option>
+       </md-select>
+     </md-input-container>
+
+    <label class="homeTime"></label><br>
+
+    <input type="datetime-local" id="exampleInput" name="input" ng-model="time" placeholder="yyyy-MM" min="2001-01-01T00:00:00" max="2019-12-31T00:00:00" />
+      <div role="alert">
+        <span class="error" ng-show="myForm.input.$error.required">
+          Required!
+        </span>
+        <span class="error" ng-show="myForm.input.$error.datetimelocal">Not a valid date!</span>
+      </div>
+
+      <div class="container" layout="column" layout-align="center center" layout-padding="" ng-cloak="">
+      <button class="hov-button" type="submit" layout-align="center center" ng-disabled="disabled" ng-click="register()"><span>Submit</span>
+        <div class="gradient"></div>
+      </button>
+  </div>
+  </form type="submit">
+
+</div>
+</div>
+<!-- <div class="container">
+  <button class="hov-button">
+    <span>Hover me</span>
+    <div class="gradient"></div>
+  </button>
+</div> -->

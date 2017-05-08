@@ -1,14 +1,47 @@
-var app = angular.module('myApp',['myApp.userInput','ngRoute'])
-//include angular router link in the html
+angular.module('app',['ngRoute', 'ngMaterial', 'smart-table', 'chart.js','app.home', 'app.data', 'app.login', 'app.signup','app.text','app.button', 'angularMoment'])
 
-.config(function($routeProvider){
-  .when("/",{
-     templateUrl : "App/index.html"
+.config(function($routeProvider) {
+  $routeProvider
+  .when('/', {
+    templateUrl: 'app/home/home.html',
+    controller: 'homeController',
+    requireAuth: true
   })
-  .when("/",{
-    templateUrl : "App/Home/home.html"
+  .when('/home', {
+    templateUrl: 'app/home/home.html',
+    controller: 'homeController',
+    requireAuth: true
+  })
+  .when('/data', {
+    templateUrl: 'app/data/data.html',
+    controller: 'dataController',
+    requireAuth: true
+  })
+  .when('/login', {
+    templateUrl: 'app/login/login.html',
+    controller: 'loginController',
+    requireAuth: false
+  })
+  .when('/signup', {
+    templateUrl: 'app/signup/signup.html',
+    controller: 'signupController',
+    requireAuth: false
+  })
+  .when('/text', {
+    templateUrl : 'app/text/text.html',
+    controller: 'textController',
+    requireAuth: true
+  })
+  .otherwise({
+    redirectTo: '/'
   })
 })
-
-<link home.html>
-NG-VIEW
+.run(function ($rootScope, $location, $route, AuthService) {
+  $rootScope.$on('$routeChangeStart',
+    function (event, next, current) {
+    if (next.$$route.requireAuth && AuthService.isLoggedIn() === false) {
+      $location.path('/login');
+      $route.reload();
+    }
+  });
+});

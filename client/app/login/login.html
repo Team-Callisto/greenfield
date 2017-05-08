@@ -1,0 +1,24 @@
+
+<div id='login' layout="column" layout-align="center center" layout-padding="" ng-cloak="" ng-controller="loginController">
+
+  <label class="pageTitle">login</label>
+  <br>
+    <md-input-container md-no-float="" class="md-block">
+      <md-icon></md-icon>
+      <label>Username</label>
+      <input ng-model="user.username" type="text">
+    </md-input-container>
+
+    <md-input-container md-no-float="" class="md-block">
+      <md-icon></md-icon>
+      <label>Password</label>
+      <input ng-model="user.password" type="password">
+      <p ng-show='error'>{{errorMessage}}</p>
+    </md-input-container>
+  
+    <div class="container" layout="column" layout-align="center center" layout-padding="" ng-cloak="">
+    <button class="hov-button" type="submit" layout-align="center center" ng-disabled="disabled" ng-click="login()"><span>Submit</span>
+      <div class="gradient"></div>
+    </button>
+</div>
+</div>

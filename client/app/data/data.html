@@ -1,0 +1,174 @@
+
+
+<div id='data' layout="column" layout-align="center center" layout-padding="" ng-cloak="" class="inputdemoIcons">
+
+  <label class="pageTitle">your data</label>
+  <!--  navigation between graphs -->
+  <div class='dataNav' id='container' ng-cloak>
+    <md-content class="md-padding">
+      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-click="displayTodayGraphs()" name="today">Today</md-nav-item>
+        <md-nav-item md-nav-click="displayDailyGraphs()" name="day">Daily</md-nav-item>
+        <md-nav-item md-nav-click="displayWeeklyGraphs()" name="week">Weekly</md-nav-item>
+        <md-nav-item md-nav-click="displayMonthlyGraphs()" name="month">Monthly</md-nav-item>
+      </md-nav-bar>
+    </md-content>
+  </div>
+
+  <!-- Displays today's data graphs -->
+  <div ng-hide=hideTodayGraph>
+    <h2>{{todayTitle}}</h2>
+    <div ng-repeat="day in todayGraphs">
+      <div class="texting">{{day.day | amDateFormat:'dddd, MMM Do, YYYY'}}</div>
+      <canvas id="line" width="{{width}}" chart-colors=['#41f47a']
+        class="chart chart-line" chart-data="[day.justLevels]"
+        chart-labels="day.justHours" chart-series="series" chart-options="options"
+        chart-dataset-override="datasetOverride" chart-click="onClick">
+      </canvas>
+      <br><br>
+    </div>
+  </div>
+
+  <!-- Displays daily data graphs -->
+  <div ng-hide=hideDayGraph>
+    <h2>{{dayTitle}}</h2>
+    <div ng-repeat="day in dailyGraphs">
+      <div class="texting">{{day.day | amDateFormat:'dddd, MMM Do, YYYY'}}</div>
+      <canvas id="line" width="{{width}}" chart-colors=['#41f47a']
+        class="chart chart-line" chart-data="[day.justLevels]"
+        chart-labels="day.justHours" chart-series="series" chart-options="options"
+        chart-dataset-override="datasetOverride" chart-click="onClick">
+      </canvas>
+      <br><br>
+    </div>
+  </div>
+
+
+  <!-- Displays a weekly data graph -->
+  <div ng-hide=hideWeekGraph>
+    <h2>{{weekTitle}}</h2>
+    <div ng-repeat="(key, value) in weeklyGraphs" >
+      {{value.justDays[0]}} - {{value.justDays[value.justDays.length - 1]}}
+      <canvas id="line" width="{{width}}" chart-colors=['#f47641']
+        class="chart chart-line" chart-data="[value.justLevels]"
+        chart-labels="value.justDays" chart-series="series" chart-options="options"
+        chart-dataset-override="datasetOverride" chart-click="onClick">
+      </canvas>
+      <br><br>
+    </div>
+  </div>
+
+
+  <!-- Displays a month data graph -->
+  <div ng-hide=hideMonthGraph>
+    <h2>{{monthTitle}}</h2>
+    <div  ng-repeat="(key, value) in monthlyGraphs" >
+      {{ value.month | amDateFormat:'MMMM YYYY'}}
+      <canvas id="line" width="{{width}}" chart-colors=['#b749aa']
+        class="chart chart-line" chart-data="[value.justLevels]"
+        chart-labels="['Week 1', 'Week 2', 'Week 3', 'Week 4']" chart-series="series" chart-options="options"
+        chart-dataset-override="datasetOverride" chart-click="onClick">
+      </canvas>
+      <br><br>
+    </div>
+  </div>
+
+
+  <!-- doughnut chart -->
+  <div ng-hide=hideTodayGraph>
+    <h2>{{todayTitle}}</h2>
+    <div ng-repeat="day in todayGraphs">
+      <canvas id="doughnut" class="chart chart-doughnut" width="{{doughnutWidth}}" chart-colors=['#f47641']
+      chart-data="barData" chart-labels="barLabels" >
+      </canvas>
+      <br><br>
+    </div>
+  </div>
+
+
+  <!-- bar chart -->
+  <div ng-hide=hideTodayGraph>
+    <h2>{{todayTitle}}</h2>
+    <div ng-repeat="day in todayGraphs">
+      <canvas id="bar" class="chart chart-bar" width="{{width}}" chart-colors=['#b749aa']
+      chart-data="barData" chart-labels="barLabels" >
+      </canvas>
+      <br><br>
+    </div>
+  </div>
+
+
+
+
+<!--
+  <h2>{{selectedData}}</h2>
+  <canvas id="line" width="{{width}}"
+    class="chart chart-line" chart-data="data" chart-colors=['#424ef4']
+    chart-labels="labels" chart-series="series" chart-options="options"
+    chart-dataset-override="datasetOverride" chart-click="onClick">
+  </canvas> -->
+
+
+
+  <!-- smart-table: just getting started resource: http://lorenzofox3.github.io/smart-table-website/#section-intro
+  <table st-table="rowCollection" class="table table-striped">
+  	<thead>
+  	<tr>
+  		<th>Time</th>
+  		<th>Data</th>
+  	</tr>
+  	</thead>
+  	<tbody>
+  	<tr ng-repeat="x in lables">
+  		<td>{{x}}</td>
+  	</tr>
+  	</tbody>
+  </table> -->
+
+
+<!--
+  <button ng-click="displayTable()">Display Table</button><br>
+  {{ tableGraph }}<br>
+
+  <input type="number" ng-model='yearToSearch' placeholder="Year to Search"></input> year: {{ yearToSearch}}<br>
+  <input type="number" ng-model='monthToSearch' placeholder="Month to Search"></input> month: {{ monthToSearch}}<br>
+  <input type="number" ng-model='dayToSearch' placeholder="Day to Search"></input> day: {{ dayToSearch}}<br>
+  <button ng-click="displayDaily()">
+    Display Daily
+  </button><br>
+  {{ tableDaily }}<br>
+  <button ng-click="displayMonthly()">
+    Display Monthly
+  </button><br>
+  {{ tableMonthly }}<br>
+
+  <br>
+  <button ng-click="displayDailyAverages()">
+    Display Daily Averages
+  </button><br>
+  <div ng-repeat="day in dailyAverages">
+    <div>{{day._id.month}}/{{day._id.day}}/{{day._id.year}} - Average Level: {{day.averageLevel}} </div>
+    <div ng-repeat="v in day.times | orderBy: 'time'">
+    <canvas id="line" width="{{width}}"
+      class="chart chart-line" chart-data="day"
+      chart-labels="labels" chart-series="series" chart-options="options"
+      chart-dataset-override="datasetOverride" chart-click="onClick">
+    </canvas>
+    <div ng-repeat="v in day.times">
+      {{ v.time | date: 'medium' }} - Level: {{ v.level }}
+    </div><br>
+  </div>
+  <br>
+
+  <button ng-click="displayWeeklyAverages()">
+    Display Weekly Averages
+  </button><br>
+  <div ng-repeat="day in weeklyAverages">
+    <div>{{day.times[0].time | date:'MMMM, d'}} - {{ day.times[day.times.length - 1].time | date:'MMMM, d'}} Average Level: {{day.averageLevel}} </div>
+    <div ng-repeat="v in day.times">
+      {{ v.time | date: 'medium' }} - Level: {{ v.level }}
+    </div><br>
+  </div> -->
+
+
+</div>
