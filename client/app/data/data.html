@@ -1,8 +1,10 @@
+
+
 <div id='data' layout="column" layout-align="center center" layout-padding="" ng-cloak="" class="inputdemoIcons">
 
   <label class="pageTitle">your data</label>
   <!--  navigation between graphs -->
-  <div id='container' ng-cloak>
+  <div class='dataNav' id='container' ng-cloak>
     <md-content class="md-padding">
       <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
         <md-nav-item md-nav-click="displayTodayGraphs()" name="today">Today</md-nav-item>
@@ -68,9 +70,32 @@
   </div>
 
 
+  <!-- doughnut chart -->
+  <div ng-hide=hideTodayGraph>
+    <h2>{{todayTitle}}</h2>
+    <div ng-repeat="day in todayGraphs">
+      <canvas id="doughnut" class="chart chart-doughnut" width="{{doughnutWidth}}" chart-colors=['#f47641']
+      chart-data="barData" chart-labels="barLabels" >
+      </canvas>
+    </div>
+  </div>
 
-  <!-- angular-charts chart: used with displayDaily(), displayWeekly(), displayMonthly() -->
-  <!-- <h2>{{selectedData}}</h2>
+
+  <!-- bar chart -->
+  <div ng-hide=hideTodayGraph>
+    <h2>{{todayTitle}}</h2>
+    <div ng-repeat="day in todayGraphs">
+      <canvas id="bar" class="chart chart-bar" width="{{width}}" chart-colors=['#b749aa']
+      chart-data="barData" chart-labels="barLabels" >
+      </canvas>
+    </div>
+  </div>
+
+
+
+
+<!--
+  <h2>{{selectedData}}</h2>
   <canvas id="line" width="{{width}}"
     class="chart chart-line" chart-data="data" chart-colors=['#424ef4']
     chart-labels="labels" chart-series="series" chart-options="options"

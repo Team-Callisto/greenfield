@@ -2,6 +2,14 @@ angular.module('app.data',[])
 
 .controller("dataController",['$scope', '$http', 'AuthService', 'moment', function($scope, $http, AuthService, moment) {
 
+   //bar chart data
+   $scope.barLabels = [-3,-2,-1,0,1,2,3];
+   $scope.barData = [
+     [20, 0, 0, 10, 20 , 10, 40 ]
+   ];
+
+
+
    //current date generator
    let currTime = new Date();
    $scope.yearToSearch = currTime.getFullYear();
@@ -13,7 +21,8 @@ angular.module('app.data',[])
      console.log(points, evt);
    };
    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
-   $scope.width = window.innerWidth * 0.7;
+   $scope.width = window.innerWidth * 0.5;
+   $scope.doughnutWidth = window.innerWidth * 0.35;
    $scope.options = {
      responsive: false,
      maintainAspectRatio: false,

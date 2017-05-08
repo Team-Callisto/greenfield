@@ -27,9 +27,9 @@ angular.module('app.home',['ngMaterial'])
   console.log('tessssssst')
   $scope.options = {
    level : null,
-   availableLevels: [3, 2, 1, 0, -1, -2, -3],
+   availableLevels: [2, 1, 0, -1, -2],
    mood : null,
-   availableMoods: ['Content', 'So-so', 'Stressed', 'Upset', 'Motivated']
+   availableMoods: ['sentiment_very_satisfied', 'sentiment_satisfied', 'sentiment_neutral', 'sentiment_dissatisfied', 'sentiment_very_dissatisfied' ]
  };
 
   // $scope.options = {
@@ -49,15 +49,21 @@ angular.module('app.home',['ngMaterial'])
     let username = AuthService.getUser();
     console.log("My username is: ", username);
     //let username = $scope.username;
-    let level = parseInt($scope.options.level, 10);
+    let level;
     let mood = $scope.options.mood;
     let time = $scope.time;
+
+    for (let i = 0; i < mood.length; i++) {
+      if (mood === $scope.options.availableMoods[i]) {
+        level = parseInt($scope.options.availableLevels[i], 10);
+      }
+    }
 
     console.log('username', username);
     console.log('level', level);
     console.log(typeof level);
-    console.log('mood', mood);
-    console.log(typeof mood)
+    // console.log('mood', mood);
+    // console.log(typeof mood)
     console.log('time is', time);
 
     $http({

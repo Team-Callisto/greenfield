@@ -1,17 +1,33 @@
+
+
 .title {
   font-family: 'Lobster', cursive;
   font-size: 100px;
 }
 
 .pageTitle {
+  color: #61BFAD;
   font-family: 'Cabin', sans-serif;
   font-size: 35px;
   margin-top: 40px;
   margin-bottom: 20px;
 }
 
-md-content {
-  color: #ff0000;
+.nav ._md-nav-button-text  {
+  color: #f9f7e8;
+  font-family: 'Cabin', sans-serif;
+}
+
+.dataNav  ._md-nav-button-text {
+  font-family: 'Cabin', sans-serif;
+}
+
+md-content.md-no-momentum {
+  background-color: transparent;
+}
+
+md-content.md-padding {
+  background-color: transparent;
 }
 
 .navigation {
@@ -23,7 +39,7 @@ md-content {
   left: 0;
   border-radius: 50%;
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   z-index: 0;
   animation-direction: alternate;
 }

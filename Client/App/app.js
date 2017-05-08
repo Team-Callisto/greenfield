@@ -36,12 +36,12 @@ angular.module('app',['ngRoute', 'ngMaterial', 'smart-table', 'chart.js','app.ho
     redirectTo: '/'
   })
 })
-// .run(function ($rootScope, $location, $route, AuthService) {
-//   $rootScope.$on('$routeChangeStart',
-//     function (event, next, current) {
-//     if (next.$$route.requireAuth && AuthService.isLoggedIn() === false) {
-//       $location.path('/login');
-//       $route.reload();
-//     }
-//   });
-// });
+.run(function ($rootScope, $location, $route, AuthService) {
+  $rootScope.$on('$routeChangeStart',
+    function (event, next, current) {
+    if (next.$$route.requireAuth && AuthService.isLoggedIn() === false) {
+      $location.path('/login');
+      $route.reload();
+    }
+  });
+});
