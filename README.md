@@ -46,3 +46,4 @@ Things to do(if you want):
   
   8.Generally, delete anything that looks useless, and make things better, delete api keys that should be ignored 
   
+  9.Deploy the app.
