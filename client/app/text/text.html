@@ -1,9 +1,26 @@
 <div id='login' layout="column" layout-align="center center" layout-padding="" ng-cloak="" ng-controller='textController'>
-<label class="pageTitle">send your friend a text!</label>
+<!-- <label class="pageTitle">Send a text!</label>
+<br/>
  <form>
-   <input type="text" ng-model="message" placeholder="textToSend"/>
-   <input type="text" ng-model="phoneNumber" placeholder="phoneNumber"/>
-   <input type="submit" ng-click="sendText()" ng-click="saveText()"/>
- </form>
- <div ng-model="displayMessage" ng-repeat='message in displayMessage' >{{message}}</div>
+
+   <input type="text" ng-model="message" placeholder="textToSend" id='out'/>
+   <input type="text" ng-model="phoneNumber" placeholder="phoneNumber" id='num'/>
+   <input type="submit"  class='txtButton'/>
+ </form> -->
+
+ <br>
+  <md-input-container md-no-float="" class="md-block">
+    <md-icon></md-icon>
+    <input ng-model="message" type="text" placeholder="textToSend">
+  </md-input-container>
+
+  <md-input-container md-no-float="" class="md-block">
+    <md-icon></md-icon>
+    <input ng-model="phoneNumber" type="text" placeholder="phoneNumber">
+  </md-input-container>
+  <div>
+    <md-button type="submit" ng-click="sendText()" ng-click="saveText()">Submit</md-button>
+  </div>
+  <div ng-model="displayMessage" ng-repeat='message in displayMessage' >{{message}}</div>
+ </div>
 </div>
