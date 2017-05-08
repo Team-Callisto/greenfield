@@ -10,8 +10,8 @@
   margin-bottom: 20px;
 }
 
-md-content {
-  color: #ff0000;
+md-content.md-padding {
+  background-color: transparent;
 }
 
 .navigation {
