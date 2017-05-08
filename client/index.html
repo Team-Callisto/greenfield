@@ -1,36 +1,21 @@
-
 <!DOCTYPE html>
 <html ng-app="app">
   <head>
-    <meta charset="utf-8">  <!-- it's important for d3.js -->
-    <script src="lib/angular/angular.js"></script>
-
-    <!-- angular lib components -->
-    <script src="lib/chart.js//dist/Chart.min.js"></script>
-    <script src="lib/angular-chart.js/dist/angular-chart.min.js"></script>
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8">
+    <!-- style sheets -->
     <link rel="stylesheet" type="text/css" href="./app/styles/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Cabin|Lobster" rel="stylesheet">
     <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.0.1/angular-moment.min.js"></script>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
-
+    <link href="https://fonts.googleapis.com/css?family=Cabin|Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
   </head>
   <body>
-
+    <!-- floating balls -->
     <div class="circle sunset"></div>
     <div class="circle coolice"></div>
     <div class="circle timber"></div>
     <div class="circle pig"></div>
     <div class="circle friday"></div>
-
+    <!-- main navigation bar -->
     <div class= 'navigation' id='container'layout="column" layout-align="center center" layout-padding="" ng-cloak="" ng-controller="superButton">
      <label layout="column" layout-align="center center" layout-padding="" ng-cloak=""><label class="title">moody</label>
       <md-content class="md-padding">
@@ -44,25 +29,30 @@
         </md-nav-bar>
       </md-content>
     </div>
-    <div ng-view><div>
-
-    <!-- Angular Library -->
+    <div ng-view></div>
+    <!-- angular library -->
+    <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-animate/angular-animate.min.js"></script>
     <script src="lib/angular-route/angular-route.min.js"></script>
     <script src="lib/angular-material/angular-material.min.js"></script>
     <script src="lib/angular-aria/angular-aria.min.js"></script>
     <script src="lib/angular-messages/angular-messages.min.js"></script>
     <script src="lib/angular-smart-table/dist/smart-table.min.js"></script>
-    <!-- Angular Material Library -->
+    <!-- angular controllers & etc -->
+    <script src="./app/text/text.controller.js"></script>
     <script src="./app/home/home.controller.js"></script>
     <script src="./app/data/data.controller.js"></script>
     <script src="./app/login/login.controller.js"></script>
     <script src="./app/signup/signup.controller.js"></script>
     <script src="./app/app.js"></script>
-
-    <script src="./app/text/text.controller.js"></script>
-
     <script src="./app/service.js"></script>
     <script src="index.controller.js"></script>
+    <!-- charts lib components -->
+    <script src="lib/chart.js//dist/Chart.min.js"></script>
+    <script src="lib/angular-chart.js/dist/angular-chart.min.js"></script>
+    <!-- for parsing, displaying, manipulating time -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.0.1/angular-moment.min.js"></script>
   </body>
 </html>
