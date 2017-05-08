@@ -1,16 +1,12 @@
 angular.module('app.login', [])
 
 .controller('loginController', ['$scope', '$location', '$rootScope', 'AuthService', function($scope, $location, $rootScope, AuthService) {
-  
   $scope.login = function () {
-
   	//initial values
   	$scope.error = false;
   	$scope.disabled = true;
-
   	//call login from service
   	AuthService.login($scope.user.username, $scope.user.password)
-
   	//handle success
   	.then(function () {
   		$location.path('/');
