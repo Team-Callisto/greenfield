@@ -11,17 +11,17 @@ var localStrategy = require('passport-local' ).Strategy;
 module.exports = function (app, express) {
 	app.use(morgan('dev'));
 	app.use(bodyParser.json());
-	app.use(bodyParser.urlencoded({extended: true}));//true or false??
+	app.use(bodyParser.urlencoded({extended: true}));
 	app.use(express.static(__dirname + '/../../client'));
 	app.use(cookieParser());
 	app.use(require('express-session')({
-    secret: 'keyboard cat',//???
+    secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false
 	}));
 	app.use(passport.initialize());
 	app.use(passport.session());
-	app.use(express.static(path.join(__dirname, 'public')));//???
+	app.use(express.static(path.join(__dirname, 'public')));
 
 	// configure passport
 	passport.use(new localStrategy(User.authenticate()));

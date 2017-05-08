@@ -1,24 +1,14 @@
-//var Q = require('q');
 var User = require('./user-data.model.js');
 var passport = require('passport');
 
-//var createUser = Q.nbind(User.create, User);
-
 module.exports = {
-
-  // signin: function (req, res, next) {
-  //   var username = req.body.user;
-  //   var password = req.body.password;
-
 
   login: function (req, res, next) {
     passport.authenticate('local', function(err, user, info) {
       if(err) {
         return next(err);
       }
-
       if(!user) {
-        //return res.redirect('/login');
         return res.status(401).json({
           err: info
         });
@@ -35,7 +25,6 @@ module.exports = {
       })
     })(req, res, next);
   },
-
 
   newUser: function (req, res, next) {
     User.register(new User({ username: req.body.username, userRealName: req.body.userRealName, email: req.body.email }),

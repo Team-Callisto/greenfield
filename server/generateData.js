@@ -10,7 +10,6 @@ var generateData = function() {
 
   for (let i = 0; i < numDays; i++) {
     for (let j = 0; j < numHours; j++) {
-      console.log('i,j', i, j);
       var newLog = new Log({
         username: 'Callisto',
         level: levels[Math.floor(Math.random() * levels.length)],
@@ -23,7 +22,6 @@ var generateData = function() {
         console.log('New log created!');
       })
     }
-    // Where is extra single log coming from?
     startDate = moment(startDate.add(1, 'days').set('hour', 8));
     console.log('new startdate is', startDate);
   }
