@@ -8,8 +8,6 @@ angular.module('app.data',[])
      [20, 0, 0, 10, 20 , 10, 40 ]
    ];
 
-
-
    //current date generator
    let currTime = new Date();
    $scope.yearToSearch = currTime.getFullYear();
@@ -38,144 +36,35 @@ angular.module('app.data',[])
      }
    };
 
-    // JS Month is 0-11, MongoDB Month is 1-12
-    // Need to add one month to query Mongo
-    $scope.displayDaily = function() {
-    $scope.selectedData = "this day's data";
-    var username = AuthService.getUser();
-    console.log("My username is: ", username);
-    let year = $scope.yearToSearch;
-    let month = $scope.monthToSearch + 1;
-    let day = $scope.dayToSearch;
-    $http({
-      method: 'POST',
-      url: `/data/${year}/${month}/${day}`,
-      // Doing below uses url: /data/?year=2017
-      // params: { year: $scope.yearToSearch}
-      data: {username: username}
-    })
-    .then(function(resp) {
-      console.log('resp is', resp.data);
-      $scope.tableDaily = resp.data;
+  // Overview of how displaying functions work
+  // Angular charts takes in labels and data
+  // To autopopulate those charts, we pass in
+  // the labels, 'justHours/Days' and
+  // data, 'justLevels'
+  //
+  // justLabel is an individual array, as such
+  // ['8PM, 9PM'] and justLevels, ['2', '-1']
+  // Because each one needs to be an individual
+  // array, also need to sort, so that values
+  // correspond with the other. Without sorting,
+  // would need an alternate method of matching
+  // the hours/days/week with levels
+  //
+  // Note that a JavaScript Date() month is from
+  // 0 - 11, while a Mongo date month is from 1-12
+  // which is why we subtract 1 when creating a JS Date
+  // and vice-versa
 
-      //temp hard coded data
-      $scope.labels = ['8:00', '9:00', '10:00', '11:00', '12:00pm', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00'];
-      $scope.data = [0,1,2,2,1,0,-2,-3,1,1,0,1,3,2,1];
-    });
-  }
+  // Therefore, we sort so that the labels and level match up
+  // and to create a descending/ascending format when
+  // displaying the data
 
+  // For more info, inspect the object property that is being
+  // returned
 
-  //this function doesn't work
-  $scope.displayWeekly = function() {
-    $scope.selectedData = "this week's data";
-    var username = AuthService.getUser();
-    console.log("My username is: ", username);
-    let year = $scope.yearToSearch;
-    let month = $scope.monthToSearch + 1;
-    let day = $scope.dayToSearch;
-    $http({
-      method: 'POST',
-      url: `/data/${year}/${month}/${day}`,
-      // Doing below uses url: /data/?year=2017
-      // params: { year: $scope.yearToSearch}
-      data: {username: username}
-    })
-    .then(function(resp) {
-      console.log('resp is', resp.data);
-      $scope.tableDaily = resp.data;
-
-      //temp hard coded data
-      $scope.labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-      $scope.data = [0,-1,0,1,2,3,3];
-    });
-  }
-
-
-  $scope.displayMonthly = function() {
-    $scope.selectedData = "this month's data";
-    var username = AuthService.getUser();
-    console.log("My username is: ", username);
-    let year = $scope.yearToSearch;
-    let month = $scope.monthToSearch + 1;
-    let day = $scope.dayToSearch;
-    $http({
-      method: 'POST',
-      url: `/data/${year}/${month}`,
-      data: {username: username}
-    })
-    .then(function(resp) {
-      console.log('resp is', resp.data);
-      // let logs = resp.data.filter(elem => elem.day === 2)
-      // .map(elem => elem.time);
-
-      // Grouping by week on server, requires underscore
-      // let test = _.groupBy(resp.data, elem => elem.week);
-      // console.log(test);
-      //
-      // for (var week in test) {
-      //   if (test.hasOwnProperty(week)) {
-      //     console.log(`Week ${week}`);
-      //     console.log(test[week]);
-      //   } else {
-      //     console.log('uhh');
-      //   }
-      // }
-      // $scope.tableMonthly = test;
-      $scope.tableMonthly = resp.data;
-
-      //temp hard coded data
-      $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      $scope.data = [0,2,3,2,0,-3,1,2,2,1,2,-3];
-    });
-  }
-
-
-  // TEMP: display db data
-  $scope.displayTable = function() {
-    var username = AuthService.getUser();
-    console.log("My username is: ", username);
-    $http({
-      method: 'POST',
-      url: '/data',
-      data: {username: username}
-    })
-    .then(function(resp) {
-      $scope.tableGraph = resp.data; // temp, just to display server response
-    });
-  }
-
-
-  $scope.displayDailyAverages = function() {
-    var username = AuthService.getUser();
-    console.log("My username is: ", username);
-    let year = $scope.yearToSearch;
-    $http({
-      method: 'POST',
-      url: `data/average/level/daily/${year}`,
-      data: {username: username}
-    })
-    .then(function(resp) {
-      console.log(resp.data);
-      $scope.dailyAverages = resp.data;
-    })
-  }
-
-
-  $scope.displayWeeklyAverages = function() {
-    var username = AuthService.getUser();
-    console.log("My username is: ", username);
-    let year = $scope.yearToSearch;
-    $http({
-      method: 'POST',
-      url: `data/average/level/weekly/${year}`,
-      data: {username: username}
-    })
-    .then(function(resp) {
-      console.log(resp.data);
-      $scope.weeklyAverages = resp.data;
-    })
-  }
-
+  // Similar to 'displayDailyGraphs', with filter function
+  // to get the current day (today)
+  // Should be refactored
   $scope.displayTodayGraphs = function() {
     $scope.todayTitle = "Today's Data";
     $scope.hideTodayGraph = false;
@@ -185,29 +74,24 @@ angular.module('app.data',[])
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
+
     $http({
       method: 'POST',
       url: `data/average/level/daily/${year}`,
       data: { username: username }
     })
     .then(function(resp) {
-      console.log('DAILY', resp.data);
-
       let daily = resp.data.sort( (a, b) => {
         let aDate = new Date(a._id.year, a._id.month - 1, a._id.day);
         let bDate = new Date(a._id.year, b._id.month - 1, b._id.day);
         return bDate - aDate;
       });
 
-      console.log('DAYsorted', daily);
-
       for (var dayNum in daily ) {
         let day = daily[dayNum];
         day['day'] = new Date(day._id.year, day._id.month - 1, day._id.day);
         day['justLevels'] = [];
         day['justHours'] = [];
-
-        console.log('DAY', day);
 
         day.times.forEach(hour => {
           day['justLevels'].push(hour.level);
@@ -221,8 +105,7 @@ angular.module('app.data',[])
         }
       });
 
-      console.log('dailyGraphs', daily);
-      console.log('found day', currDay);
+      console.log('todayGraphs', daily);
       $scope.todayGraphs = currDay;
     })
   }
@@ -242,23 +125,17 @@ angular.module('app.data',[])
       data: { username: username }
     })
     .then(function(resp) {
-      console.log('DAILY', resp.data);
-
       let daily = resp.data.sort( (a, b) => {
         let aDate = new Date(a._id.year, a._id.month - 1, a._id.day);
         let bDate = new Date(a._id.year, b._id.month - 1, b._id.day);
         return bDate - aDate;
       });
 
-      console.log('DAYsorted', daily);
-
       for (var dayNum in daily ) {
         let day = daily[dayNum];
         day['day'] = new Date(day._id.year, day._id.month - 1, day._id.day);
         day['justLevels'] = [];
         day['justHours'] = [];
-
-        console.log('DAY', day);
 
         day.times.forEach(hour => {
           day['justLevels'].push(hour.level);
@@ -270,7 +147,6 @@ angular.module('app.data',[])
       $scope.dailyGraphs = daily;
     })
   },
-
 
   $scope.displayWeeklyGraphs = function() {
     $scope.weekTitle = "This Week's Data";
@@ -304,19 +180,15 @@ angular.module('app.data',[])
             console.log('b', b);
           });
           week['weekLevels'] = sorted;
-          console.log('sorted', sorted);
         })
 
         week['justLevels'] = week['weekLevels'].map(level => level[1]);
         week['justDays'] = week['weekLevels'].map(level => moment(level[0]).format('ddd, MMM Do'));
-
-        console.log('week', week);
       }
-      console.log('dailyGraphs', weekly);
+      console.log('weeklyGraphs', weekly);
       $scope.weeklyGraphs = weekly;
     })
   },
-
 
   $scope.displayMonthlyGraphs = function() {
     $scope.monthTitle = "This Month's Data";
@@ -351,18 +223,130 @@ angular.module('app.data',[])
             console.log('b', b);
           });
           month['monthLevels'] = sorted;
-          console.log('sorted', sorted);
         })
 
-        // var just levels
-        // iterate through month['monthLevels'], getting just level
         month['justLevels'] = month['monthLevels'].map(level => level[1]);
         month['justWeeks'] = month['monthLevels'].map(level => level[0]);
-
-        console.log('month', month);
       }
-      console.log('dailyGraphs', monthly);
+      console.log('monthlyGraphs', monthly);
       $scope.monthlyGraphs = monthly;
+    })
+  }
+
+  // **********************************************************
+  // Below functions helpful with debugging
+  // Not used in production
+
+  // JS Month is 0-11, MongoDB Month is 1-12
+  // Need to add one month to query Mongo
+  $scope.displayDaily = function() {
+    $scope.selectedData = "this day's data";
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
+    let year = $scope.yearToSearch;
+    let month = $scope.monthToSearch + 1;
+    let day = $scope.dayToSearch;
+    $http({
+      method: 'POST',
+      url: `/data/${year}/${month}/${day}`,
+      // Doing below uses url: /data/?year=2017
+      // params: { year: $scope.yearToSearch}
+      data: {username: username}
+    })
+    .then(function(resp) {
+      console.log('resp is', resp.data);
+      $scope.tableDaily = resp.data;
+
+      //temp hard coded data to test graphs
+      $scope.labels = ['8:00', '9:00', '10:00', '11:00', '12:00pm', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00'];
+      $scope.data = [0,1,2,2,1,0,-2,-3,1,1,0,1,3,2,1];
+    });
+  }
+
+  $scope.displayWeekly = function() {
+    $scope.selectedData = "this week's data";
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
+    let year = $scope.yearToSearch;
+    let month = $scope.monthToSearch + 1;
+    let day = $scope.dayToSearch;
+    $http({
+      method: 'POST',
+      url: `/data/${year}/${month}/${day}`,
+      data: {username: username}
+    })
+    .then(function(resp) {
+      console.log('resp is', resp.data);
+      $scope.tableDaily = resp.data;
+
+      //temp hard coded data for testing graph
+      $scope.labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+      $scope.data = [0,-1,0,1,2,3,3];
+    });
+  }
+
+  $scope.displayMonthly = function() {
+    $scope.selectedData = "this month's data";
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
+    let year = $scope.yearToSearch;
+    let month = $scope.monthToSearch + 1;
+    let day = $scope.dayToSearch;
+    $http({
+      method: 'POST',
+      url: `/data/${year}/${month}`,
+      data: {username: username}
+    })
+    .then(function(resp) {
+      console.log('resp is', resp.data);
+      $scope.tableMonthly = resp.data;
+
+      //temp hard coded data to test graphs
+      $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      $scope.data = [0,2,3,2,0,-3,1,2,2,1,2,-3];
+    });
+  }
+
+  $scope.displayTable = function() {
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
+    $http({
+      method: 'POST',
+      url: '/data',
+      data: {username: username}
+    })
+    .then(function(resp) {
+      $scope.tableGraph = resp.data; // temp, just to display server response
+    });
+  }
+
+  $scope.displayDailyAverages = function() {
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
+    let year = $scope.yearToSearch;
+    $http({
+      method: 'POST',
+      url: `data/average/level/daily/${year}`,
+      data: {username: username}
+    })
+    .then(function(resp) {
+      console.log(resp.data);
+      $scope.dailyAverages = resp.data;
+    })
+  }
+
+  $scope.displayWeeklyAverages = function() {
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
+    let year = $scope.yearToSearch;
+    $http({
+      method: 'POST',
+      url: `data/average/level/weekly/${year}`,
+      data: {username: username}
+    })
+    .then(function(resp) {
+      console.log(resp.data);
+      $scope.weeklyAverages = resp.data;
     })
   }
 }])

@@ -31,6 +31,7 @@ module.exports = {
     });
   },
 
+  // Uses Mongo aggregation pipelines
   daily: function(req, res, next) {
     aggregateLogs([
       {
